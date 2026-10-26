@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name:       Flatsome Better Animations
+ * Plugin URI:        https://wordpress-plugins-docs.vercel.app/plugins/flatsome-better-animations
  * Description:       Erstatter Flatsomes trege standard-animasjoner med raskere, moderne overganger. Legger også til et eget .reveal scroll-animasjonssystem.
  * Version:           1.0.2
  * Author:            Benjamin Pedersen
