@@ -1,0 +1,86 @@
+@media (prefers-reduced-motion: no-preference) {
+
+    .col + .col [data-animate]:not([data-animated="true"]),
+    [data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]),
+    [data-animate-delay="200"] { transition-delay:  80ms !important; }
+
+    [data-animate-delay="300"],
+    .col + .col + .col [data-animate]:not([data-animated="true"]),
+    [data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]) { transition-delay: 160ms !important; }
+
+    [data-animate-delay="400"],
+    .col + .col + .col + .col [data-animate]:not([data-animated="true"]) { transition-delay: 240ms !important; }
+
+    [data-animate-delay="500"] { transition-delay: 300ms !important; }
+    [data-animate-delay="600"] { transition-delay: 370ms !important; }
+    [data-animate-delay="700"] { transition-delay: 440ms !important; }
+    [data-animate-delay="800"] { transition-delay: 510ms !important; }
+    [data-animate-delay="900"] { transition-delay: 580ms !important; }
+    [data-animate-delay="1000"]{ transition-delay: 650ms !important; }
+
+    [data-animate=blurIn]:not([data-animated="true"]) { filter: blur(8px) !important; }
+}
+
+
+
+:root {
+    --fba-move: 24px; 
+}
+
+.ux-builder-iframe .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translate3d(0, var(--fba-move), 0);
+    will-change: opacity, transform;
+}
+
+.reveal.reveal--down      { transform: translate3d(0, calc(-1 * var(--fba-move)), 0); }
+.reveal.reveal--left      { transform: translate3d(calc(-1 * var(--fba-move)), 0, 0); }
+.reveal.reveal--right     { transform: translate3d(var(--fba-move), 0, 0); }
+.reveal.reveal--fade      { transform: none; }
+.reveal.reveal--zoom      { transform: scale(0.95); }
+.reveal.reveal--zoom-out  { transform: scale(1.05); }
+.reveal.reveal--tilt      {
+    transform: perspective(600px) rotateX(5deg) translateY(calc(var(--fba-move) * 0.75));
+}
+
+.reveal.is-visible {
+    animation: fba-reveal-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) forwards;
+}
+
+@keyframes fba-reveal-in {
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
+    }
+}
+
+.reveal-stagger { /* container-markør */ }
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.reveal--down,
+    .reveal.reveal--left,
+    .reveal.reveal--right,
+    .reveal.reveal--fade,
+    .reveal.reveal--zoom,
+    .reveal.reveal--zoom-out,
+    .reveal.reveal--tilt {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
+
+/* Fallback når JavaScript er av (Flatsome setter html.no-js). */
+html.no-js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    will-change: auto;
+}
