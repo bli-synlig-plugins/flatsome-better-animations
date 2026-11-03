@@ -1,0 +1,81 @@
+.fba-ux-option {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	--fba-move: 14px;
+}
+
+.fba-ux-none {
+	appearance: none;
+	width: 100%;
+	text-align: left;
+	padding: 8px 10px;
+	border-radius: 4px;
+	border: 1px solid hsla(0, 0%, 100%, 0.1);
+	background: #333a41;
+	color: #c3c4c7;
+	cursor: pointer;
+}
+
+.fba-ux-none.is-on {
+	border-color: #2271b1;
+	color: #fff;
+	box-shadow: 0 0 0 1px #2271b1;
+}
+
+.fba-ux-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px;
+}
+
+.fba-ux-card {
+	appearance: none;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid hsla(0, 0%, 100%, 0.1);
+	background: #333a41;
+	color: #f1f1f1;
+	cursor: pointer;
+	text-align: left;
+	min-width: 0;
+}
+
+.fba-ux-card.is-on {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+}
+
+.fba-ux-card b {
+	display: block;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1.3;
+	color: #f1f1f1;
+}
+
+.fba-ux-stage {
+	height: 42px;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+	border-radius: 3px;
+	background: #2a3036;
+	border: 1px dashed hsla(0, 0%, 100%, 0.12);
+}
+
+.fba-ux-sw {
+	width: 36px;
+	height: 18px;
+	border-radius: 3px;
+	background: #2271b1;
+}
+
+.fba-ux-none:focus-visible,
+.fba-ux-card:focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: 1px;
+}

@@ -1,86 +1,180 @@
 @media (prefers-reduced-motion: no-preference) {
+	.col + .col [data-animate]:not([data-animated="true"]),
+	[data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]),
+	[data-animate-delay="200"] { transition-delay: 80ms !important; }
 
-    .col + .col [data-animate]:not([data-animated="true"]),
-    [data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]),
-    [data-animate-delay="200"] { transition-delay:  80ms !important; }
+	[data-animate-delay="300"],
+	.col + .col + .col [data-animate]:not([data-animated="true"]),
+	[data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]) { transition-delay: 160ms !important; }
 
-    [data-animate-delay="300"],
-    .col + .col + .col [data-animate]:not([data-animated="true"]),
-    [data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]) + [data-animate]:not([data-animated="true"]) { transition-delay: 160ms !important; }
+	[data-animate-delay="400"],
+	.col + .col + .col + .col [data-animate]:not([data-animated="true"]) { transition-delay: 240ms !important; }
 
-    [data-animate-delay="400"],
-    .col + .col + .col + .col [data-animate]:not([data-animated="true"]) { transition-delay: 240ms !important; }
+	[data-animate-delay="500"] { transition-delay: 300ms !important; }
+	[data-animate-delay="600"] { transition-delay: 370ms !important; }
+	[data-animate-delay="700"] { transition-delay: 440ms !important; }
+	[data-animate-delay="800"] { transition-delay: 510ms !important; }
+	[data-animate-delay="900"] { transition-delay: 580ms !important; }
+	[data-animate-delay="1000"] { transition-delay: 650ms !important; }
 
-    [data-animate-delay="500"] { transition-delay: 300ms !important; }
-    [data-animate-delay="600"] { transition-delay: 370ms !important; }
-    [data-animate-delay="700"] { transition-delay: 440ms !important; }
-    [data-animate-delay="800"] { transition-delay: 510ms !important; }
-    [data-animate-delay="900"] { transition-delay: 580ms !important; }
-    [data-animate-delay="1000"]{ transition-delay: 650ms !important; }
-
-    [data-animate=blurIn]:not([data-animated="true"]) { filter: blur(8px) !important; }
+	[data-animate=blurIn]:not([data-animated="true"]) { filter: blur(8px) !important; }
 }
-
-
 
 :root {
-    --fba-move: 24px; 
+	--fba-move: 24px;
+	--fba-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--fba-duration: 650ms;
+	--fba-opacity-duration: 420ms;
+	--fba-text-duration: 800ms;
+	--fba-default-from: translate3d(0, var(--fba-move), 0);
+	--fba-default-filter: none;
+	--fba-default-clip: none;
 }
 
-.ux-builder-iframe .reveal {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
+.ux-builder-iframe .reveal,
+.ux-builder-iframe .reveal-text .fba-u > i {
+	opacity: 1 !important;
+	transform: none !important;
+	filter: none !important;
+	clip-path: none !important;
+	animation: none !important;
+	transition: none !important;
 }
 
-.reveal {
-    opacity: 0;
-    transform: translate3d(0, var(--fba-move), 0);
-    will-change: opacity, transform;
+html.fba-js .reveal {
+	--fba-from: var(--fba-default-from);
+	--fba-filter: var(--fba-default-filter);
+	opacity: 0;
+	transform: var(--fba-from);
+	filter: var(--fba-filter);
+	will-change: opacity, transform, filter;
 }
 
-.reveal.reveal--down      { transform: translate3d(0, calc(-1 * var(--fba-move)), 0); }
-.reveal.reveal--left      { transform: translate3d(calc(-1 * var(--fba-move)), 0, 0); }
-.reveal.reveal--right     { transform: translate3d(var(--fba-move), 0, 0); }
-.reveal.reveal--fade      { transform: none; }
-.reveal.reveal--zoom      { transform: scale(0.95); }
-.reveal.reveal--zoom-out  { transform: scale(1.05); }
-.reveal.reveal--tilt      {
-    transform: perspective(600px) rotateX(5deg) translateY(calc(var(--fba-move) * 0.75));
+html.fba-js .reveal.reveal--fade-up { --fba-from: translate3d(0, var(--fba-move), 0); --fba-filter: none; }
+html.fba-js .reveal.reveal--fade-down,
+html.fba-js .reveal.reveal--down { --fba-from: translate3d(0, calc(var(--fba-move) * -1), 0); --fba-filter: none; }
+html.fba-js .reveal.reveal--fade-left,
+html.fba-js .reveal.reveal--left { --fba-from: translate3d(calc(var(--fba-move) * -1), 0, 0); --fba-filter: none; }
+html.fba-js .reveal.reveal--fade-right,
+html.fba-js .reveal.reveal--right { --fba-from: translate3d(var(--fba-move), 0, 0); --fba-filter: none; }
+html.fba-js .reveal.reveal--fade { --fba-from: none; --fba-filter: none; }
+html.fba-js .reveal.reveal--zoom-in,
+html.fba-js .reveal.reveal--zoom { --fba-from: scale(0.88); --fba-filter: none; }
+html.fba-js .reveal.reveal--zoom-out { --fba-from: scale(1.12); --fba-filter: none; }
+html.fba-js .reveal.reveal--blur {
+	--fba-from: translate3d(0, calc(var(--fba-move) * 0.5), 0);
+	--fba-filter: blur(10px);
+}
+html.fba-js .reveal.reveal--tilt {
+	--fba-from: perspective(800px) rotateX(16deg) translate3d(0, var(--fba-move), 0);
+	--fba-filter: none;
+}
+html.fba-js .reveal.reveal--flip {
+	--fba-from: perspective(800px) rotateY(-55deg);
+	--fba-filter: none;
 }
 
-.reveal.is-visible {
-    animation: fba-reveal-in 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) forwards;
+html.fba-js .reveal.reveal--wipe,
+html.fba-js .reveal.reveal--wipe-l {
+	transform: none;
+	filter: none;
 }
 
-@keyframes fba-reveal-in {
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1) rotateX(0deg);
-    }
+html.fba-js .reveal.is-visible {
+	opacity: 1;
+	transform: none;
+	filter: none;
+	transition:
+		transform var(--fba-duration) var(--fba-ease) var(--reveal-delay, 0ms),
+		opacity var(--fba-opacity-duration) ease-out var(--reveal-delay, 0ms),
+		filter var(--fba-duration) var(--fba-ease) var(--reveal-delay, 0ms);
 }
 
-.reveal-stagger { /* container-markør */ }
+html.fba-js .reveal.reveal--wipe.is-visible {
+	transition: none;
+	animation: fba-wipe-up var(--fba-duration) var(--fba-ease) var(--reveal-delay, 0ms) both;
+}
+
+html.fba-js .reveal.reveal--wipe-l.is-visible {
+	transition: none;
+	animation: fba-wipe-left var(--fba-duration) var(--fba-ease) var(--reveal-delay, 0ms) both;
+}
+
+@keyframes fba-wipe-up {
+	from {
+		opacity: 0;
+		clip-path: inset(100% 0 0 0);
+	}
+	to {
+		opacity: 1;
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+@keyframes fba-wipe-left {
+	from {
+		opacity: 0;
+		clip-path: inset(0 100% 0 0);
+	}
+	to {
+		opacity: 1;
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+.reveal-stagger { /* container marker */ }
+
+html.fba-js .reveal-text .fba-u {
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: top;
+	padding-bottom: 0.12em;
+	margin-bottom: -0.12em;
+}
+
+html.fba-js .reveal-text--linje .fba-u {
+	display: block;
+}
+
+html.fba-js .reveal-text .fba-u > i {
+	display: inline-block;
+	font-style: normal;
+	will-change: transform, opacity, filter;
+	transition:
+		transform var(--fba-text-duration) var(--fba-ease) var(--reveal-delay, 0ms),
+		opacity calc(var(--fba-text-duration) * 0.6) ease var(--reveal-delay, 0ms),
+		filter var(--fba-text-duration) ease var(--reveal-delay, 0ms);
+}
+
+html.fba-js .reveal-text--rise:not(.is-visible) .fba-u > i { transform: translateY(110%); }
+html.fba-js .reveal-text--fade:not(.is-visible) .fba-u > i { transform: translateY(10px); opacity: 0; }
+html.fba-js .reveal-text--blur:not(.is-visible) .fba-u > i { transform: translateY(6px); opacity: 0; filter: blur(8px); }
+html.fba-js .reveal-text--rot:not(.is-visible) .fba-u > i { transform: translateY(60%) rotate(5deg); opacity: 0; }
+
+html.fba-js .reveal-text.is-visible .fba-u > i {
+	transform: none;
+	opacity: 1;
+	filter: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
-    .reveal,
-    .reveal.reveal--down,
-    .reveal.reveal--left,
-    .reveal.reveal--right,
-    .reveal.reveal--fade,
-    .reveal.reveal--zoom,
-    .reveal.reveal--zoom-out,
-    .reveal.reveal--tilt {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-    }
+	body.fba-respect-reduced .reveal,
+	body.fba-respect-reduced .reveal-text .fba-u > i {
+		opacity: 1 !important;
+		transform: none !important;
+		filter: none !important;
+		clip-path: none !important;
+		animation: none !important;
+		transition: none !important;
+	}
 }
 
-/* Fallback når JavaScript er av (Flatsome setter html.no-js). */
-html.no-js .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    will-change: auto;
+html.no-js .reveal,
+html.no-js .reveal-text .fba-u > i {
+	opacity: 1 !important;
+	transform: none !important;
+	filter: none !important;
+	clip-path: none !important;
+	animation: none !important;
+	will-change: auto;
 }
