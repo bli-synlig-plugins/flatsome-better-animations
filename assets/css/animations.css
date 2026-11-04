@@ -32,6 +32,8 @@
 }
 
 .ux-builder-iframe .reveal,
+.ux-builder-iframe .reveal-text,
+.ux-builder-iframe [data-fba-child-anim] .col,
 .ux-builder-iframe .reveal-text .fba-u > i {
 	opacity: 1 !important;
 	transform: none !important;
@@ -124,12 +126,17 @@ html.fba-js .reveal.reveal--wipe-l.is-visible {
 
 .reveal-stagger { /* container marker */ }
 
+html.fba-js .reveal-text .fba-word {
+	display: inline-block;
+	white-space: nowrap;
+}
+
 html.fba-js .reveal-text .fba-u {
 	display: inline-block;
 	overflow: hidden;
 	vertical-align: top;
-	padding-bottom: 0.12em;
-	margin-bottom: -0.12em;
+	padding: 0.32em 0 0.2em;
+	margin: -0.32em 0 -0.2em;
 }
 
 html.fba-js .reveal-text--linje .fba-u {
@@ -146,7 +153,7 @@ html.fba-js .reveal-text .fba-u > i {
 		filter var(--fba-text-duration) ease var(--reveal-delay, 0ms);
 }
 
-html.fba-js .reveal-text--rise:not(.is-visible) .fba-u > i { transform: translateY(110%); }
+html.fba-js .reveal-text--rise:not(.is-visible) .fba-u > i { transform: translateY(130%); }
 html.fba-js .reveal-text--fade:not(.is-visible) .fba-u > i { transform: translateY(10px); opacity: 0; }
 html.fba-js .reveal-text--blur:not(.is-visible) .fba-u > i { transform: translateY(6px); opacity: 0; filter: blur(8px); }
 html.fba-js .reveal-text--rot:not(.is-visible) .fba-u > i { transform: translateY(60%) rotate(5deg); opacity: 0; }

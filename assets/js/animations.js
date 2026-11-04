@@ -149,15 +149,30 @@
 		var frag = document.createDocumentFragment();
 
 		if (unit === "tegn") {
-			var chars = Array.from(text);
-			for (var i = 0; i < chars.length; i += 1) {
-				if (chars[i] === " ") {
-					frag.appendChild(document.createTextNode(" "));
-				} else if (chars[i] === "\n") {
-					frag.appendChild(document.createElement("br"));
-				} else {
-					frag.appendChild(wrapPiece(chars[i]));
+			var chunks = text.split(/(\s+)/);
+			for (var t = 0; t < chunks.length; t += 1) {
+				var chunk = chunks[t];
+				if (chunk === "") {
+					continue;
 				}
+				if (/^\s+$/.test(chunk)) {
+					var ws = chunk.split(/(\n)/);
+					for (var w = 0; w < ws.length; w += 1) {
+						if (ws[w] === "\n") {
+							frag.appendChild(document.createElement("br"));
+						} else if (ws[w] !== "") {
+							frag.appendChild(document.createTextNode(ws[w]));
+						}
+					}
+					continue;
+				}
+				var word = document.createElement("span");
+				word.className = "fba-word";
+				var letters = Array.from(chunk);
+				for (var c = 0; c < letters.length; c += 1) {
+					word.appendChild(wrapPiece(letters[c]));
+				}
+				frag.appendChild(word);
 			}
 		} else if (unit === "linje") {
 			var lines = text.split(/\n/);
@@ -462,7 +477,7 @@
 			window.clearTimeout(failsafeTimer);
 		}
 		failsafeTimer = window.setTimeout(function () {
-			document.querySelectorAll(".reveal:not(.is-visible), .reveal-text:not(.is-visible)").forEach(showImmediately);
+			document.querySelectorAll(".reveal:not(.is-visible), .reveal-text:not(.is-visible), [data-fba-child-anim] .col:not(.is-visible)").forEach(showImmediately);
 		}, 2500);
 	}
 

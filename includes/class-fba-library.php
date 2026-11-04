@@ -170,7 +170,7 @@ class FBA_Library {
 		return array(
 			'rise' => array(
 				'label'     => __( 'Løft', 'flatsome-better-animations' ),
-				'transform' => 'translateY(110%)',
+				'transform' => 'translateY(130%)',
 				'opacity'   => '1',
 				'filter'    => 'none',
 			),

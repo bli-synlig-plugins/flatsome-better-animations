@@ -2,7 +2,7 @@
 
 WordPress-plugin som gjør Flatsome-animasjoner raskere, og legger til et eget scroll-basert reveal-system med valg direkte på UX-elementer.
 
-**Versjon:** 2.0.0  
+**Versjon:** 2.0.1  
 **Forfatter:** Benjamin Pedersen
 
 Tidligere navn: Flatsome Better Animations. Slug og innstillingsnøkkel er uendret (`flatsome-better-animations` / `fba_settings`).

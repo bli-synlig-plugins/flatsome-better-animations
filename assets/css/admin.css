@@ -439,8 +439,8 @@
 	display: inline-block;
 	overflow: hidden;
 	vertical-align: top;
-	padding-bottom: 0.12em;
-	margin-bottom: -0.12em;
+	padding: 0.32em 0 0.2em;
+	margin: -0.32em 0 -0.2em;
 }
 
 .fba-canvas h3 .u > i {

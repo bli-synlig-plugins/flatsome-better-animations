@@ -3,7 +3,7 @@
  * Plugin Name:       Flatsome Motion
  * Plugin URI:        https://wordpress-plugins-docs.vercel.app/plugins/flatsome-better-animations
  * Description:       Raskere Flatsome-animasjoner, scroll-reveal og Motion-felt direkte på UX-elementer.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Author:            Benjamin Pedersen
  * Text Domain:       flatsome-better-animations
  */
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FBA_VERSION', '2.0.0' );
+define( 'FBA_VERSION', '2.0.1' );
 define( 'FBA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FBA_URL', plugin_dir_url( __FILE__ ) );
 
