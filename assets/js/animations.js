@@ -1,6 +1,11 @@
 (function () {
 	"use strict";
 
+	if (window.__fbaFailsafe) {
+		window.clearTimeout(window.__fbaFailsafe);
+		window.__fbaFailsafe = null;
+	}
+
 	function toBool(value, fallback) {
 		if (value === undefined || value === null || value === "") {
 			return fallback;
@@ -304,6 +309,13 @@
 		el.classList.add("is-visible");
 	}
 
+	function isInViewport(el) {
+		var rect = el.getBoundingClientRect();
+		var vh = window.innerHeight || document.documentElement.clientHeight;
+		var vw = window.innerWidth || document.documentElement.clientWidth;
+		return rect.bottom > 0 && rect.right > 0 && rect.top < vh && rect.left < vw;
+	}
+
 	function isColumn(el) {
 		if (!el || el.nodeType !== 1) {
 			return false;
@@ -473,11 +485,19 @@
 	var failsafeTimer = null;
 
 	function startFailsafe() {
+		if (window.__fbaFailsafe) {
+			window.clearTimeout(window.__fbaFailsafe);
+			window.__fbaFailsafe = null;
+		}
 		if (failsafeTimer) {
 			window.clearTimeout(failsafeTimer);
 		}
 		failsafeTimer = window.setTimeout(function () {
-			document.querySelectorAll(".reveal:not(.is-visible), .reveal-text:not(.is-visible), [data-fba-child-anim] .col:not(.is-visible)").forEach(showImmediately);
+			document.querySelectorAll(".reveal:not(.is-visible), .reveal-text:not(.is-visible), [data-fba-child-anim] .col:not(.is-visible)").forEach(function (el) {
+				if (isInViewport(el)) {
+					showImmediately(el);
+				}
+			});
 		}, 2500);
 	}
 

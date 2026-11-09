@@ -107,7 +107,7 @@ class FBA_Plugin {
 		}
 		?>
 		<style id="fba-critical-hide">html.fba-js .reveal:not(.is-visible),html.fba-js .reveal-text:not(.is-visible),html.fba-js [data-fba-child-anim] .col:not(.is-visible){opacity:0}</style>
-		<script>document.documentElement.classList.add('fba-js');window.setTimeout(function(){var n=document.querySelectorAll('.reveal:not(.is-visible),.reveal-text:not(.is-visible),[data-fba-child-anim] .col:not(.is-visible)');for(var i=0;i<n.length;i++)n[i].classList.add('is-visible');},2500);</script>
+		<script>document.documentElement.classList.add('fba-js');window.__fbaFailsafe=window.setTimeout(function(){if(window.flatsomeBetterAnimations){return;}var n=document.querySelectorAll('.reveal:not(.is-visible),.reveal-text:not(.is-visible),[data-fba-child-anim] .col:not(.is-visible)');for(var i=0;i<n.length;i++)n[i].classList.add('is-visible');},8000);</script>
 		<?php
 	}
 
